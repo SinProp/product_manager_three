@@ -59,7 +59,7 @@ const UpdateProduct = (props) => {
         value={description}
         />
         </div>
-        <button type="submit">Update</button>
+        <button type="submit" value="Update">Update</button>
     </form>
 
     </div>
