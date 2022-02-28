@@ -1,3 +1,4 @@
+import { navigate } from "@reach/router";
 import axios from "axios";
 import React, { useState, useEffect} from "react";
 
@@ -14,6 +15,16 @@ const ShowProduct = (props) => {
         .catch(err => console.log(err));
     }, []);
 
+    const deleteHandler = () => {
+        axios.delete(`http://localhost:8000/api/products/${_id}`)
+        .then(response => {
+            console.log(response.data);
+            navigate("/");
+        })
+        .catch(err => console.log(err));
+    }
+    
+
     console.log(_id);
     return (
     <div>
@@ -21,6 +32,7 @@ const ShowProduct = (props) => {
         <hr />
         <p>Price: ${productInfo.price}</p>
         <p>Description: {productInfo.description}</p>
+        <button onClick={deleteHandler}>Delete</button>
 
         </div>
     );

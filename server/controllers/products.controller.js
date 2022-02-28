@@ -17,8 +17,28 @@ const getProductById = (req, res) => {
     .catch((err) => console.log(err));
 };
 
+const deleteProduct = (req, res) => {
+    Product.deleteOne({ _id: req.params._id })
+    .then((erasedProduct) => res.json(erasedProduct))
+    .catch((err) => console.log(err));
+};
+
+const updateProduct = (req, res) => {
+    Product.findOneAndUpdate({ _id: req.params._id}, 
+        req.body, 
+        {
+        new: true,
+        runValidators: true,
+        })
+        .then(updatedProduct => res.json(updatedProduct))
+        .catch(err => console.log(err))
+};
+
+
 module.exports = {
     addProduct,
     getAllProducts,
     getProductById,
+    deleteProduct,
+    updateProduct,
 }
